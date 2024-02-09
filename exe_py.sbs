@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#SBATCH --job-name=fs-rp
+#SBATCH --partition=gpu
+#SBATCH --gpus=2
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=64GB
+#SBATCH --account=def_acct
+#SBATCH --output=./logs/slurm-%A.out
+#SBATCH --error=err_diff.txt
+#SBATCH --mail-type=END
+#SBATCH --mail-user=donya.rooein@unibocconi.it
+         
+
+
+export TOKENIZERS_PARALLELISM=true
+
+source /home/Rooein/.bashrc
+conda activate bea-task
+
+python3 few-shot.py
